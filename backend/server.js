@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
-// Connect to MongoDB (replace "Montadar-Alfadel" with your actual database name)
+// Connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/Montadar-Alfadel', {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -22,15 +22,19 @@ mongoose.connection.on('error', (err) => {
 // Middleware to parse JSON
 app.use(bodyParser.json());
 
-// Example middleware (you can add more as needed)
+// Example middleware 
 app.use((req, res, next) => {
     console.log(`Request received: ${req.method} ${req.url}`);
     next(); // Call the next middleware in the stack
 });
 
 // Routes
-const productRoutes = require('./routes/productRoutes');
-app.use('/api/products', productRoutes);
+const productRoutes = require('./routes/productRoutes'); // Include product routes
+const userRoutes = require('./routes/userRoutes'); // Include user routes
+
+// Use the routes
+app.use('/api/products', productRoutes); // Use product routes
+app.use('/api/users', userRoutes); // Use user routes
 
 // Test route to check the database connection
 app.get('/testdb', (req, res) => {
