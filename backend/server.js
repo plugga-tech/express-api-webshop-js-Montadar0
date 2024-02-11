@@ -22,7 +22,7 @@ mongoose.connection.on('error', (err) => {
 // Middleware to parse JSON
 app.use(bodyParser.json());
 
-// Example middleware 
+// Example middleware
 app.use((req, res, next) => {
     console.log(`Request received: ${req.method} ${req.url}`);
     next(); // Call the next middleware in the stack
@@ -31,10 +31,12 @@ app.use((req, res, next) => {
 // Routes
 const productRoutes = require('./routes/productRoutes'); // Include product routes
 const userRoutes = require('./routes/userRoutes'); // Include user routes
+const orderRoutes = require('./routes/orderRoutes'); // Include order routes
 
 // Use the routes
 app.use('/api/products', productRoutes); // Use product routes
 app.use('/api/users', userRoutes); // Use user routes
+app.use('/api/orders', orderRoutes); // Use order routes
 
 // Test route to check the database connection
 app.get('/testdb', (req, res) => {
