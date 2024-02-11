@@ -63,10 +63,9 @@ const getAllUsers = async (req, res) => {
     }
 };
 
-// Controller function to get a specific user by ID 
+// Controller function to get users info by ID
 const getUserById = async (req, res) => {
-    const userId = req.params.id;
-
+    const userId = req.body.id; 
     try {
         const user = await User.findById(userId);
 
@@ -74,6 +73,7 @@ const getUserById = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
+        // Return the entire user object, including password
         res.json(user);
     } catch (error) {
         console.error(`Error fetching user by ID: ${error}`);

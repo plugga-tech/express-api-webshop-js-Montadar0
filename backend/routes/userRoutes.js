@@ -12,7 +12,7 @@ router.post('/add', userController.registerUser);
 // Route to login a user
 router.post('/login', userController.loginUser);
 
-// Route to get a specific user by ID using GET
-router.get('/:id', userController.getUserById);
+// Route to get a specific user by ID
+router.post('/', userController.getUserById);
 
 module.exports = router;
